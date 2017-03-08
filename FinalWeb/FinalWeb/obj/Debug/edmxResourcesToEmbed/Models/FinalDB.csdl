@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Test_VKRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Locality" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="House" Type="Int32" Nullable="false" />
+    <Property Name="Housing" Type="Int32" Nullable="false" />
+    <Property Name="Apartment" Type="Int32" />
+    <Property Name="Postcode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Region_id" Type="Int32" />
+    <Property Name="Name_city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_CityReg" FromRole="City" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Region_id" />
+    </Key>
+    <Property Name="Region_id" Type="Int32" Nullable="false" />
+    <Property Name="Name_region" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_CityReg" FromRole="Region" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_hash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="User_confirm_login" Type="Boolean" />
+    <Property Name="User_comfirm_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RequisitesPayer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tax_user" Type="Int32" Nullable="false" />
+    <Property Name="Surname_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeFace_user" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReqNumber" Type="Int32" />
+  </EntityType>
+  <EntityType Name="RequisitesReceiptOne">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="KBK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Index" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="RequisitesReceiptTwo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="KBK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Index" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RequisitesRecipient">
+    <Key>
+      <PropertyRef Name="PolINN" />
+    </Key>
+    <Property Name="Pol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PolINN" Type="Int64" Nullable="false" />
+    <Property Name="PolKPP" Type="Int64" />
+    <Property Name="PolSchet" Type="Double" />
+    <Property Name="PolBIK" Type="Int32" />
+    <Property Name="PolKorSchet" Type="Int32" />
+    <Property Name="PolBank" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PolKod" Type="Int32" />
+    <Property Name="Index" Type="Int32" />
+    <Property Name="OKATO" Type="Int64" />
+    <Property Name="PolType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_CityReg">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Region_id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="Region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Test_VKREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Regions" EntityType="Self.Region" />
+    <EntitySet Name="Registrations" EntityType="Self.Registration" />
+    <EntitySet Name="RequisitesPayers" EntityType="Self.RequisitesPayer" />
+    <EntitySet Name="RequisitesReceiptOnes" EntityType="Self.RequisitesReceiptOne" />
+    <EntitySet Name="RequisitesReceiptTwoes" EntityType="Self.RequisitesReceiptTwo" />
+    <EntitySet Name="RequisitesRecipients" EntityType="Self.RequisitesRecipient" />
+    <AssociationSet Name="FK_CityReg" Association="Self.FK_CityReg">
+      <End Role="Region" EntitySet="Regions" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

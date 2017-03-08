@@ -1,0 +1,10 @@
+﻿@model IEnumerable<FinalWeb.Models.City>
+
+<select id="city" name="City">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Region_id">@item.Name_city</option>
+        
+    }
+
+</select> 

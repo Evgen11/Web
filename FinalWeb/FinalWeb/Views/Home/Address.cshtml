@@ -1,0 +1,30 @@
+﻿@model FinalWeb.Models.Address
+
+@using (Html.BeginForm("Address", "Home", FormMethod.Post))
+{
+    <p>
+        Введите район: <br />
+        @Html.TextBoxFor(model => model.Locality)
+    </p>
+    <p>
+        Введите улицу: <br />
+        @Html.TextBoxFor(model => model.Street)
+    </p>
+    <p>
+        Введите дом: <br />
+        @Html.TextBoxFor(model => model.House)
+    </p>
+    <p>
+        Введите корпус(необязательно): <br />
+        @Html.TextBoxFor(model => model.Housing)
+    </p>
+    <p>
+        Введите квартиру: <br />
+        @Html.TextBoxFor(model => model.Apartment)
+    </p>
+    <p>
+        Введите индекс: <br />
+        @Html.TextBoxFor(model => model.Postcode)
+    </p>
+
+}

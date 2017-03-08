@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Test_VKRModelContainer" CdmEntityContainer="Test_VKREntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="Test_VKRModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Locality" ColumnName="Locality" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="House" ColumnName="House" />
+          <ScalarProperty Name="Housing" ColumnName="Housing" />
+          <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="Test_VKRModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Region_id" ColumnName="Region_id" />
+          <ScalarProperty Name="Name_city" ColumnName="Name_city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="Test_VKRModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="Region_id" ColumnName="Region_id" />
+          <ScalarProperty Name="Name_region" ColumnName="Name_region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="Test_VKRModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User_login" ColumnName="User_login" />
+          <ScalarProperty Name="User_password" ColumnName="User_password" />
+          <ScalarProperty Name="User_hash" ColumnName="User_hash" />
+          <ScalarProperty Name="User_confirm_login" ColumnName="User_confirm_login" />
+          <ScalarProperty Name="User_comfirm_password" ColumnName="User_comfirm_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequisitesPayers">
+      <EntityTypeMapping TypeName="Test_VKRModel.RequisitesPayer">
+        <MappingFragment StoreEntitySet="RequisitesPayer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tax_user" ColumnName="Tax_user" />
+          <ScalarProperty Name="Surname_user" ColumnName="Surname_user" />
+          <ScalarProperty Name="TypeFace_user" ColumnName="TypeFace_user" />
+          <ScalarProperty Name="ReqNumber" ColumnName="ReqNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequisitesReceiptOnes">
+      <EntityTypeMapping TypeName="Test_VKRModel.RequisitesReceiptOne">
+        <MappingFragment StoreEntitySet="RequisitesReceiptOne">
+          <ScalarProperty Name="KBK" ColumnName="KBK" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequisitesReceiptTwoes">
+      <EntityTypeMapping TypeName="Test_VKRModel.RequisitesReceiptTwo">
+        <MappingFragment StoreEntitySet="RequisitesReceiptTwo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KBK" ColumnName="KBK" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequisitesRecipients">
+      <EntityTypeMapping TypeName="Test_VKRModel.RequisitesRecipient">
+        <MappingFragment StoreEntitySet="RequisitesRecipient">
+          <ScalarProperty Name="Pol" ColumnName="Pol" />
+          <ScalarProperty Name="PolINN" ColumnName="PolINN" />
+          <ScalarProperty Name="PolKPP" ColumnName="PolKPP" />
+          <ScalarProperty Name="PolSchet" ColumnName="PolSchet" />
+          <ScalarProperty Name="PolBIK" ColumnName="PolBIK" />
+          <ScalarProperty Name="PolKorSchet" ColumnName="PolKorSchet" />
+          <ScalarProperty Name="PolBank" ColumnName="PolBank" />
+          <ScalarProperty Name="PolKod" ColumnName="PolKod" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="OKATO" ColumnName="OKATO" />
+          <ScalarProperty Name="PolType" ColumnName="PolType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

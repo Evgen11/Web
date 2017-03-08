@@ -1,0 +1,77 @@
+﻿ @*@model IEnumerable<FinalWeb.Models.Region>*@ 
+ 
+@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm()) 
+{
+   <fieldset>
+        <legend> Реквизиты плательщика </legend>
+    
+             @Html.Partial("ReqPayer")
+        
+           @Html.Partial("Address")
+
+           @Html.DropDownList("Region", ViewBag.Regions as SelectList, "Выберете регион", new { id = "region" })
+           @Html.DropDownList("City", ViewBag.Cities as SelectList, "Выберете город", new { id = "city" })
+           @Html.Partial("TestRC")
+            
+
+        <input type="submit" value="Соxранить данные" onclick="return getdf()" />
+
+    </fieldset>
+
+ }
+
+<script type="text/javascript">
+    function getdf() {
+        var test = {
+
+            Region_user : $('#region :selected').text(),
+            City_user: $('#city :selected').text(),
+            
+        };
+      
+        
+        $.ajax({
+    type: "POST",
+        url: '@Url.Action("TestRC")',
+            data: JSON.stringify(test),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: successFunc,
+            error: errorFunc
+
+           })
+
+        //alert(test);
+    }
+function successFunc(data, status) {
+    alert(data);
+}
+
+function errorFunc(errorData) {
+    alert('Ошибка' + errorData.responseText);
+}
+console.log(test);
+
+  
+</script>
+@section scripts{
+    <script type="text/javascript">
+        $(function(){
+            $('#region').change(function()
+            {
+                var id=$(this).val();
+                $.ajax({
+                    type:"GET",
+                    url:'@Url.Action("GetItems")/'+id,
+                    success:function(data){
+                        $('#city').replaceWith(data);
+                    }
+                });
+            });
+        })
+
+</script>
+}

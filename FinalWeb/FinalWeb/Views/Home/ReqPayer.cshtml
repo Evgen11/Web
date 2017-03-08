@@ -1,0 +1,28 @@
+﻿@model FinalWeb.Models.RequisitesPayer
+
+@using (Html.BeginForm("ReqPayer", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <p>
+        Введите ИНН: <br />
+        @Html.TextBoxFor(model => model.Tax_user)
+    </p>
+    <p>
+        Введите ФИО <br />
+        @Html.TextBoxFor(model => model.Surname_user)
+    </p>
+    <p>
+        @Html.DropDownListFor(model => model.TypeFace_user, (new[] {
+          new SelectListItem() {Text = "Физическое лицо"},
+          new SelectListItem() {Text = "Юридическое лицо"} }), "Выберете тип")
+    </p>
+    <p>
+        Введите рег номер <br />
+        @Html.TextBoxFor(model => model.ReqNumber)
+    </p>
+}
+
+
+
+

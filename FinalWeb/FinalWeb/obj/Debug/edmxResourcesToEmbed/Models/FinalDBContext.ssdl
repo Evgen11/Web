@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Test_VKRModel" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.3.3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Locality" Type="text" />
+    <Property Name="Street" Type="text" Nullable="false" />
+    <Property Name="House" Type="int" Nullable="false" />
+    <Property Name="Housing" Type="int" Nullable="false" />
+    <Property Name="Apartment" Type="int" />
+    <Property Name="Postcode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Region_id" Type="int" />
+    <Property Name="Name_city" Type="text" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Region_id" />
+    </Key>
+    <Property Name="Region_id" Type="int" Nullable="false" />
+    <Property Name="Name_region" Type="varchar" MaxLength="65535" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_hash" Type="text" />
+    <Property Name="User_confirm_login" Type="boolean" />
+    <Property Name="User_comfirm_password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RequisitesPayer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tax_user" Type="int" Nullable="false" />
+    <Property Name="Surname_user" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TypeFace_user" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ReqNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="RequisitesReceiptOne">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="KBK" Type="text" />
+    <Property Name="Index" Type="int" />
+    <Property Name="Name" Type="text" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequisitesReceiptTwo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="KBK" Type="text" />
+    <Property Name="Index" Type="int" />
+    <Property Name="Name" Type="text" />
+  </EntityType>
+  <EntityType Name="RequisitesRecipient">
+    <Key>
+      <PropertyRef Name="PolINN" />
+    </Key>
+    <Property Name="Pol" Type="text" />
+    <Property Name="PolINN" Type="bigint" Nullable="false" />
+    <Property Name="PolKPP" Type="bigint" />
+    <Property Name="PolSchet" Type="double precision" />
+    <Property Name="PolBIK" Type="int" />
+    <Property Name="PolKorSchet" Type="int" />
+    <Property Name="PolBank" Type="text" />
+    <Property Name="PolKod" Type="int" />
+    <Property Name="Index" Type="int" />
+    <Property Name="OKATO" Type="bigint" />
+    <Property Name="PolType" Type="text" />
+  </EntityType>
+  <Association Name="FK_City">
+    <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Region_id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="Region_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Test_VKRModelContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="public" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="public" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="public" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="public" store:Type="Tables" />
+    <EntitySet Name="RequisitesPayer" EntityType="Self.RequisitesPayer" Schema="public" store:Type="Tables" />
+    <EntitySet Name="RequisitesReceiptOne" EntityType="Self.RequisitesReceiptOne" Schema="public" store:Type="Tables" />
+    <EntitySet Name="RequisitesReceiptTwo" EntityType="Self.RequisitesReceiptTwo" Schema="public" store:Type="Tables" />
+    <EntitySet Name="RequisitesRecipient" EntityType="Self.RequisitesRecipient" Schema="public" store:Type="Tables" />
+    <AssociationSet Name="FK_City" Association="Self.FK_City">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
